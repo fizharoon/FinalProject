@@ -28,8 +28,8 @@ const Login = () => {
             <br />
             <br />
             <button>Register</button>
-          </div>
-    </body>
+          </div>                   
+    </body>    
   );
 };
 
