@@ -4,7 +4,7 @@
 */
 
 body{
-
+    /* background: linear-gradient(to right, #ae2896, #509bf5); */
     background-image: linear-gradient(to right, rgb(218, 118, 189) , rgb(248, 248, 125));
     /* border-style: dashed;   */
 }

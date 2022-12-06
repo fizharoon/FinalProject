@@ -2,7 +2,7 @@ body {font-family: "Lato", sans-serif;}
 
 .sidebar {
   height: 100%;
-  width: 160px;
+  width: 190px;
   position: fixed;
   z-index: 1;
   top: 0;
@@ -10,6 +10,7 @@ body {font-family: "Lato", sans-serif;}
   background-color: #111;
   overflow-x: hidden;
   padding-top: 16px;
+  position: fixed;
 }
 
 .sidebar a {
@@ -25,7 +26,7 @@ body {font-family: "Lato", sans-serif;}
 }
 
 .main {
-  margin-left: 160px; /* Same as the width of the sidenav */
+  margin-left: 190px; /* Same as the width of the sidenav */
   padding: 0px 10px;
 }
 /* .dropdown-btn {
