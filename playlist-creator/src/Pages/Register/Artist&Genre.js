@@ -22,11 +22,10 @@ const PreRegister = () => {
         <div id="root"></div>
         <button id="btn">Submit</button>
 
-
       </body>
     </main>
   );
-  
+
 };
 
 export default PreRegister;
