@@ -26,6 +26,7 @@ const PreRegister = () => {
       </body>
     </main>
   );
+  
 };
 
 export default PreRegister;
