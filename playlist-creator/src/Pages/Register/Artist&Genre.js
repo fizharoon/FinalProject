@@ -9,7 +9,6 @@ const PreRegister = () => {
     <main className="dashboard">
       <h1>PreRegister</h1>
       <body>
-
         <h2>Select genres</h2>
         <input type="checkbox" id="genre" name="acoustic" value="acoustic" />
         <label for="genre">acoustic </label><br />
@@ -21,7 +20,6 @@ const PreRegister = () => {
         <label for="Drake">Drake </label><br />
         <div id="root"></div>
         <button id="btn">Submit</button>
-
       </body>
     </main>
   );
