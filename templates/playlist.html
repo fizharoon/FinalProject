@@ -1,30 +1,29 @@
-import React, { useEffect, useState } from "react";
-import "./styles.css";
-import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
-const ViewPlaylist = () => {
-  const [user, setUser] = useState(0);
-  useEffect(() => {}, []);
-
-  return (
-    
-        
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Create Playlist</title>
+        <link rel="stylesheet" href="dashboard.css">
+    </head>
     <body>
 
         <div class="sidebar">
             <a href="dashboard.html"><i class="fa fa-fw fa-home"></i> Home</a>
             <a href="createplaylist.html"><i class="fa fa-fw fa-plus-square"></i> Create Playlist</a>
             <a href="playlist.html"><i class="fa fa-fw fa-heart-o"></i> My Playlists </a> 
-            <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <a href="login.html">Logout <i class="fa fa-fw fa-sign-out"></i></a>
 
           </div>
-          <br/>
+          <br>
         <div class="move">
             <h2>Playlist 1</h2>
-            
+            <!-- <input type="text" id="playlistname"> -->
+            <!-- <button>Create</button> -->
 
         </div>
-        <br/><br/>
+        <br><br>
         <div class="move">
             <table>
                 <thead>
@@ -38,7 +37,7 @@ const ViewPlaylist = () => {
                 </tbody>
             </table>
         </div>
-        <br/><br/><br/><br/><br/><br/><br/>
+        <br><br><br><br><br><br><br>
 
         <h2 class="move">Recommended Songs</h2>
         <div class="move">
@@ -60,7 +59,4 @@ const ViewPlaylist = () => {
             </table>
     </div>
     </body>
-  );
-};
-
-export default ViewPlaylist;
+</html>
