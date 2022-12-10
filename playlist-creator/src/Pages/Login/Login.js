@@ -1,48 +1,74 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
-  const checkUser = () => {
+  const navigate = useNavigate();
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  console.log(username);
+  console.log(password);
+  const checkUser = (event) => {
+    console.log("YEET");
+    event.preventDefault();
+    console.log(username);
+    console.log(password);
     axios
       .post(`http://127.0.0.1:5000/login`, {
-        username: "Sean",
-        password: "Testing",
+        username: username,
+        password: password,
       })
 
       .then((res) => {
         console.log("YEET");
         console.log(res);
+        if (res.data.success == true) {
+          setUsername("");
+          setPassword("");
+          navigate("/Dashboard");
+        }
       });
   };
-  const [user, setUser] = useState(0);
 
   useEffect(() => {}, []);
 
   return (
     <body>
-        <div class="header">
-          <div>
-            <h1>SPooT IffY</h1>
-          </div>
+      <div class="header">
+        <div>
+          <h1>SPooT IffY</h1>
         </div>
-    
-          <div class="body">
-            <form>
-                <label for="username">Username:</label>
-              <br />
-                <input type="text" id="username" name="username" />
-              <br />
-                <label for="pwd">Password:</label>
-              <br />
-                <input type="password" id="pwd" name="pwd" />
-            </form>{" "}
-            <br />
-            <button>Log In</button>
-            <br />
-            <br />
-            <button>Register</button>
-          </div>                   
-    </body>    
+      </div>
+
+      <div class="body">
+        <form onSubmit={checkUser}>
+          <label for="username">Username:</label>
+          <br />
+          <input
+            value={username}
+            type="text"
+            id="username"
+            name="username"
+            onChange={(event) => setUsername(event.target.value)}
+          />
+          <br />
+          <label for="pwd">Password:</label>
+          <input
+            value={password}
+            type="password"
+            id="pwd"
+            name="pwd"
+            onChange={(event) => setPassword(event.target.value)}
+          />
+          <button type="submit">Log In</button>
+        </form>{" "}
+        <br />
+        <br />
+        <br />
+        {/* <button>Register</button> */}
+      </div>
+    </body>
   );
 };
 
