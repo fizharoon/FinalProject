@@ -6,6 +6,7 @@ import Register from "./Pages/Register/Register";
 import CreatePlaylist from "./Pages/CreatePlaylist/CreatePlaylist";
 import ViewPlaylist from "./Pages/ViewPlaylist/ViewPlaylist";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import axios from "axios";
 
 function App() {
   return (
