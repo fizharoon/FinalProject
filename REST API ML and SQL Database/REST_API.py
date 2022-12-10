@@ -84,6 +84,16 @@ def Register():
 
         password += salt
 
+        # Check to see of username is already taken
+        USERS = metadata.tables['Users']
+        query = db.select(USERS).where(USERS.c.User_Name == user_name)
+        
+        result = engine.execute(query).fetchall()
+
+        if(len(result) != 0):
+            print("Choose another username")
+            return json.dumps({0:400})
+
         User_ID = session.query(Users).count()
  
         query = db.insert(users).values(User_ID=User_ID, User_Name=user_name, password=hashlib.sha256(password.encode()).hexdigest())
@@ -91,19 +101,27 @@ def Register():
 
         new_Playlist_ID = session.query(Playlists).count()
 
-        query = db.insert(Playlists).values(playlists_ID=new_Playlist_ID, playlist_name='Liked Songs', User_ID = 0, songs = '')
+        query = db.insert(Playlists).values(playlists_ID=new_Playlist_ID, playlist_name='Liked Songs', User_ID = User_ID, songs = '')
+        conn.execute(query)
+        
+        new_Playlist_ID = session.query(Playlists).count()
+
+        query = db.insert(Playlists).values(playlists_ID=new_Playlist_ID, playlist_name='Recommended Songs', User_ID = User_ID, songs = '')
         conn.execute(query)
 
-        return {0:0}
+        return json.dumps({0:0})
 
 # Login to user account
-@app.route('/login/<user_name>/<password>', methods=['GET'])
-def Login(user_name, password):
+@app.route('/login', methods=['POST'])
+def Login():
 
     global ID
 
-    if (request.method == "GET"):
+    if (request.method == "POST"):
         print(request.method)
+
+        user_name = request.json['username']
+        password = request.json['password']
 
         HT = {}
 
@@ -117,10 +135,15 @@ def Login(user_name, password):
         for row in result:
             if row[1] == user_name and row[2] == hashlib.sha256(password.encode()).hexdigest():
                 ID = row[0]
-                HT[0] = 0
+                HT[0] = 200
+
+                print(f"Password Correct: {HT}")
+
                 return json.dumps(HT)
         
-        HT[1] = 1
+        HT[1] = 400
+
+        print(f"Password not Correct: {HT}")
 
         return json.dumps(HT)
 
@@ -129,7 +152,23 @@ def Login(user_name, password):
 def GetHomeInfo():
 
     # Return the Names of the Playlists linked to the user
-    pass
+
+    # User's Playlists, Suggested songs
+
+    HT = {}
+
+    q = f'''SELECT playlist_name
+    FROM Playlists
+    WHERE User_ID == {ID}'''
+
+    result=conn.execute(q)
+
+    for i, item in enumerate(result):
+        HT[i] = item[0]
+
+    print(HT)
+
+    return json.dumps(HT)
 
 # Get all the Genres 
 @app.route('/SetUp/GetGenres', methods=['GET'])
@@ -157,16 +196,23 @@ def SetGenres():
 
     if (request.method == "POST"):
         # Expects a json of selected_genres
-        selected_genres = request.json
+        selected_genres = []
         
-        for item in selected_genres:
+        for item in list(request.json):
             selected_genres.append(item)
+
+    print(selected_genres)
+
+    return json.dumps({0:0})
 
 # Get Top ~50 Recommended Artists
 @app.route('/SetUp/GetArtists', methods=['GET'])
 def GetArtists():
 
     global recommended_songs
+    global selected_genres
+
+    print(selected_genres)
 
     if (request.method == "GET"):
         
@@ -413,15 +459,15 @@ def GetRecommendations():
         return json.dumps(HT)        
 
 # Get the songs in the playlist
-@app.route('/UserHome/GetPlaylist/<playlist>', methods=['GET'])
-def GetPlaylist(playlist):
+@app.route('/UserHome/GetPlaylist/<playlist_ID>', methods=['GET'])
+def GetPlaylist(playlist_ID):
 
     # Return the songs in each playlist
 
     if(request.method == 'GET'):
 
         # SQLAlchemy Query to select all rows with
-        query = db.select(Playlists).where(Playlists.c.User_ID == ID and Playlists.c.playlist_name == playlist)
+        query = db.select(Playlists).where(Playlists.c.User_ID == ID and Playlists.c.playlists_ID == playlist_ID)
         
         # Fetch all the records
         result = engine.execute(query).fetchall()
@@ -433,15 +479,25 @@ def GetPlaylist(playlist):
         return json.dumps(HT)
 
 # Add a song to a playlist
-@app.route('/UserHome/ModifyPlaylist/AddSong/<playlist>/<song>', methods=['PUT'])
-def AddSong(playlist, song):
+@app.route('/UserHome/ModifyPlaylist/AddSong/<playlist_ID>/<song_ID>', methods=['PUT'])
+def AddSong(playlist_ID, song_ID):
 
     # Add a song to the playlist
 
     if(request.method == 'PUT'):
 
         # SQLAlchemy Query to select all rows with
-        query = db.select(Playlists).where(Playlists.c.User_ID == ID and Playlists.c.playlist_name == playlist)
+        query = db.select(Songs).where(Songs.c.song_ID == song_ID)
+        
+        # Fetch all the records
+        song = engine.execute(query).fetchall()
+
+        print(song)
+
+        song = str(song[4])
+
+        # SQLAlchemy Query to select all rows with
+        query = db.select(Playlists).where(Playlists.c.User_ID == ID and Playlists.c.playlists_ID == ID)
         
         # Fetch all the records
         result = engine.execute(query).fetchall()
@@ -450,7 +506,7 @@ def AddSong(playlist, song):
 
         q = f"""UPDATE Playlists
         SET songs = {new_songs}
-        WHERE User_D == {ID} and playlist_name == {playlist};"""
+        WHERE User_D == {ID} and playlists_ID == {playlist_ID};"""
 
         result=conn.execute(q)
 

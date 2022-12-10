@@ -50,7 +50,7 @@ def Initialize_Songs(df):
     # Populate the Songs Table
         
     pb = ProgressBar(total=df.shape[0], suffix='Completed', decimals=3, length=50, fill='X', zfill='-')
-        
+    
     for i in range(df.shape[0]):
 
         try:
