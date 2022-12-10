@@ -50,10 +50,9 @@ def Initialize_Songs(df):
     metadata.create_all(engine)  # Creates the table
 
     # Populate the Songs Table
-
-    pb = ProgressBar(total=df.shape[0], suffix='Completed',
-                     decimals=3, length=50, fill='X', zfill='-')
-
+        
+    pb = ProgressBar(total=df.shape[0], suffix='Completed', decimals=3, length=50, fill='X', zfill='-')
+  
     for i in range(df.shape[0]):
 
         try:
