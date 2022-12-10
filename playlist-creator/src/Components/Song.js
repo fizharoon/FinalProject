@@ -13,10 +13,11 @@ const Song = () => {
         <input type="checkbox" id="song" name="song1" value="song1" />
         <label for="song">song </label><br />
         <div id="root"></div>
-        <button id="btn">Add </button>
         <button id="btn">Play </button>
+        <button id="btn">Add to playlist</button>
       </body>
     </main>
+
   );
 
 };
