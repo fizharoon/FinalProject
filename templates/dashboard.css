@@ -29,13 +29,21 @@ input[type=text] {
     border-bottom: 2px solid black;
     height: 50px;
     width: 500px;
-    font-size: x-large;
+    /* font-size: x-large; */
+    background: transparent;
+    color: white;
+    font-size: 35px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+
+    /* border: none; */
 }
 input[type=text]:focus {
-    border-bottom: 3px solid #f1f1f1;
+    /* border-bottom: 3px solid #f1f1f1; */
+    outline: none;
 
 }
-.playlist{
+.playlist {
     width:200px;
     height: 200px;
     border-radius: 8px;
@@ -76,7 +84,9 @@ table{
   
    tr:nth-child(even){background-color: #f2f2f2;}
   
-   tr:hover {background-color: rgb(166, 164, 238);}
+   tr:hover {background-color: rgb(121, 117, 226);
+        transition-duration: 0.2s;
+    }
   
    th {
     padding-top: 12px;
@@ -85,10 +95,10 @@ table{
     background-color: #221254;
     color: white;
   }
-tbody:hover{
+/* tbody:hover{
     background-color: white;
     color: black;
-}
+} */
 
 .move{
     margin-left: 190px;
@@ -121,6 +131,10 @@ tbody:hover{
 .main {
   margin-left: 190px; /* Same as the width of the sidenav */
   padding: 0px 10px;
+}
+.sidebar a:active{
+    color: #f1f1f1;
+
 }
 /* .dropdown-btn {
     padding: 6px 8px 6px 16px;
