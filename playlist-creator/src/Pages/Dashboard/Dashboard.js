@@ -23,6 +23,7 @@ const Dashboard = () => {
         <a href="#home">
           <i class="fa fa-fw fa-home"></i> Home
         </a>
+        <a href="search.html"><i class="fa fa-fw fa-search"></i> Search</a>
         <a href="createplaylist.html">
           <i class="fa fa-fw fa-plus-square"></i> Create Playlist
         </a>
