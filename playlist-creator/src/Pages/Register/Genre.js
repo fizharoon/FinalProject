@@ -14,12 +14,6 @@ const PreRegister = () => {
         <label for="genre">acoustic </label><br />
         <div id="root"></div>
         <button id="btn">Submit</button>
-
-        <h2>Select artists</h2>
-        <input type="checkbox" id="artist" name="Drake" value="Drake" />
-        <label for="Drake">Drake </label><br />
-        <div id="root"></div>
-        <button id="btn">Submit</button>
       </body>
     </main>
   );
