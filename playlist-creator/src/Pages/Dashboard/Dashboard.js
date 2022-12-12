@@ -33,7 +33,6 @@ const Dashboard = () => {
       <Navbar />
       <div class="main">
         <h2>My Playlists</h2>
-
         {data.map((obj) => {
           return <button class="playlist">{obj.name}</button>;
         })}
