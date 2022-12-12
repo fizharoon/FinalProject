@@ -43,7 +43,6 @@ const Register = () => {
           <input
             type="text"
             id="username"
-            
             name="username"
             onChange={(event) => setUsername(event.target.value)}
           />
