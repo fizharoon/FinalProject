@@ -10,9 +10,9 @@ const CreatePlaylist = () => {
 
   return (
     <body>
-      <Navbar />
+      {/* <Navbar /> */}
 
-      <div class="sidebar">
+      {/* <div class="sidebar">
         <a href="dashboard.html">
           <i class="fa fa-fw fa-home"></i> Home
         </a>
@@ -54,7 +54,7 @@ const CreatePlaylist = () => {
         <a href="login.html">
           Logout <i class="fa fa-fw fa-sign-out"></i>
         </a>
-      </div>
+      </div> */}
       <br />
       <div class="move">
         <input type="text" id="playlistname" />
