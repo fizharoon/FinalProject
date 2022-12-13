@@ -61,7 +61,7 @@
 
 // const send_artists = {"Lizzo": 0, "J-Cole": 1, "The Kid LAROI": 2, "Justin Bieber":3,
 // "IVE":4, "Crush":5, "Jack Harlow": 6, "21 Savage": 7, "Harry Styles": 8, "SEULGI":9,
-// "BLACKPINK":10, "Drake": 11, "LE SSERAFIM": 12, "Eminem": 13, "Charlie Puth": 14, 
+// "BLACKPINK":10, "Drake": 11, "LE SSERAFIM": 12, "Eminem": 13, "Charlie Puth": 14,
 // "The Weeknd":15, "Lil Nas X": 16, "OneRepublic": 17, "Joji":18, "Nate Dogg": 19, "Halsey": 20,
 // "Sam Smith": 21, "aespa": 22, "Chris Brown": 23, "TWICE": 24, "BTS": 25};
 
@@ -71,7 +71,6 @@
 //     body:JSON.stringify(send_artists)
 // })
 // .then(response=>response.json())
-
 
 // Get Setup Songs
 
@@ -106,7 +105,6 @@
 
 // Get Recommendations!
 
-fetch("http://127.0.0.1:5000/UserHome/GetRecommendations",{
-    method:'GET'
-})
-.then(response=>response.json())
+fetch("http://127.0.0.1:5000/UserHome/GetRecommendations", {
+  method: "GET",
+}).then((response) => response.json());

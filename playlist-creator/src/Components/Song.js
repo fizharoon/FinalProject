@@ -1,38 +1,39 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./styles.css";
+import SongInfo from "./SongInfo";
 // import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
-const RecSongs = () => {
+const RecSongs = (props) => {
   const [user, setUser] = useState(0);
 
   let data = [
     {
       song: "Song One",
-      ID: "1",
+      ID: "10",
       artist: "Artist",
       album: "new Ablum",
     },
     {
       song: "Song Two",
-      ID: "2",
+      ID: "11",
       artist: "Artist",
       album: "new Ablum",
     },
     {
       song: "Song Three",
-      ID: "3",
+      ID: "12",
       artist: "Artist",
       album: "new Ablum",
     },
     {
       song: "Song Four",
-      ID: "4",
+      ID: "13",
       artist: "Artist",
       album: "new Ablum",
     },
     {
       song: "Song Five",
-      ID: "5",
+      ID: "14",
       artist: "Artist",
       album: "new Ablum",
     },
@@ -48,8 +49,11 @@ const RecSongs = () => {
 
   return (
     <div>
-      <h2>Recommended Songs</h2>
-      <div>
+      <div class="move">
+        <h2>Recommended Songs</h2>
+      </div>
+      <br />
+      <div class="move">
         <table id="RecSongsTable">
           <thead>
             <th>Song Name</th>
@@ -60,16 +64,11 @@ const RecSongs = () => {
           <tbody>
             {data.map((obj) => {
               return (
-                <tr>
-                  <td>{obj.song}</td>
-                  <td>{obj.artist}</td>
-                  <td>{obj.album}</td>
-                  <td>
-                    <button class="add">
-                      <i class="fa fa-fw fa-plus"></i>
-                    </button>
-                  </td>
-                </tr>
+                <SongInfo
+                  ID={obj.ID}
+                  playlists={props.playlists}
+                  modify={true}
+                />
               );
             })}
           </tbody>
@@ -78,27 +77,6 @@ const RecSongs = () => {
     </div>
   );
 };
-
-// export default RecSongs;
-// import "./styles.css";
-
-// const Song = () => {
-//   const [user, setUser] = useState(0);
-//   useEffect(() => { }, []);
-
-//   return (
-//     <main className="dashboard">
-//       <h1>Songs</h1>
-//       <body>
-//         <h2>Select songs</h2>
-//         <input type="checkbox" id="song" name="song1" value="song1" />
-//         <label for="song">song </label><br />
-//         <div id="root"></div>
-//         <button id="btn">Add </button>
-//         <button id="btn">Play </button>
-//       </body>
-//     </main>
-//   );
 
 // };
 

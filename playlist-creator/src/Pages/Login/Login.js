@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./styles.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 const Login = () => {
   const navigate = useNavigate();
 
@@ -23,7 +24,7 @@ const Login = () => {
       .then((res) => {
         console.log("YEET");
         console.log(res);
-        if (res.data.success == true) {
+        if (res.data[0] == 200) {
           setUsername("");
           setPassword("");
           navigate("/Dashboard");
@@ -47,8 +48,7 @@ const Login = () => {
           <br />
           <input
             value={username}
-            type="text"
-            id="username"
+            id="pwd"
             name="username"
             onChange={(event) => setUsername(event.target.value)}
           />
@@ -61,8 +61,13 @@ const Login = () => {
             name="pwd"
             onChange={(event) => setPassword(event.target.value)}
           />
-          <button type="submit">Log In</button>
-        </form>{" "}
+          <button class="newButton" type="submit">
+            Log In
+          </button>
+        </form>
+        <button class="newButton" onClick={() => navigate("/Register")}>
+          Register
+        </button>
         <br />
         <br />
         <br />

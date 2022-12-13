@@ -2,65 +2,51 @@ import React, { useEffect, useState } from "react";
 import "./styles.css";
 import RecSongs from "../../Components/Song";
 import Navbar from "../../Components/Navbar";
-
-// import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+import axios from "axios";
 const CreatePlaylist = () => {
-  const [user, setUser] = useState(0);
+  const [name, setName] = useState("");
   useEffect(() => {}, []);
 
+  const createPlaylist = (e) => {
+    e.preventDefault();
+
+    // axios
+    //   .post(`http://127.0.0.1:5000/login`, {
+    //     name: name,
+    //   })
+
+    //   .then((res) => {
+    //     console.log("YEET");
+    //     console.log(res);
+    //     if (res.data[0] == 200) {
+    //       setName("");
+    //     }
+    //   });
+    console.log(name);
+  };
   return (
     <body>
-      {/* <Navbar /> */}
-
-      {/* <div class="sidebar">
-        <a href="dashboard.html">
-          <i class="fa fa-fw fa-home"></i> Home
-        </a>
-        <a href="search.html">
-          <i class="fa fa-fw fa-search"></i> Search
-        </a>
-        <a href="createplaylist.html">
-          <i class="fa fa-fw fa-plus-square"></i> Create Playlist
-        </a>
-        <a href="playlist.html">
-          <i class="fa fa-fw fa-heart-o"></i> My Playlists{" "}
-        </a>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <a href="login.html">
-          Logout <i class="fa fa-fw fa-sign-out"></i>
-        </a>
-      </div> */}
-      <br />
-      <div class="move">
-        <input type="text" id="playlistname" />
-        <button>Create</button>
+      <Navbar />
+      <div class="header">
+        <div>
+          <h1>Create Playlist</h1>
+        </div>
       </div>
-      <RecSongs />
+
+      <div class="body">
+        <form onSubmit={(e) => createPlaylist(e)}>
+          <label for="username">Playlist Name:</label>
+
+          <input
+            value={name}
+            id="playlistname"
+            onChange={(event) => setName(event.target.value)}
+          />
+          <button class="newButton" type="submit">
+            Create
+          </button>
+        </form>
+      </div>
     </body>
   );
 };

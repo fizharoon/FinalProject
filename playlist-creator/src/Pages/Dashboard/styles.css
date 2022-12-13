@@ -51,9 +51,10 @@ button {
   width: 100px;
   height: 50px;
   border-radius: 15px;
-  border: none;
   background-color: black;
   color: white;
+
+  border: 3px solid white;
 }
 button:hover {
   background-color: rgb(55, 54, 54);
@@ -72,13 +73,13 @@ table {
     width: 100%;
   } */
 
-td,
+td {
+  background: none;
+  color: white;
+}
 th {
   border: none;
   padding: 8px;
-}
-
-tr:nth-child(even) {
 }
 
 tr:hover {
