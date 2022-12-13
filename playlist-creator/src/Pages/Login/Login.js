@@ -43,17 +43,23 @@ const Login = () => {
 
       <div class="body">
         <form onSubmit={checkUser}>
+          <br />
           <label for="username">Username:</label>
+          <br />
           <br />
           <input
             value={username}
-            type="text"
+            type="username"
             id="username"
             name="username"
             onChange={(event) => setUsername(event.target.value)}
           />
           <br />
+          <br />
+          <br />
           <label for="pwd">Password:</label>
+          <br />
+          <br />
           <input
             value={password}
             type="password"
@@ -61,6 +67,9 @@ const Login = () => {
             name="pwd"
             onChange={(event) => setPassword(event.target.value)}
           />
+           <br />
+           <br />
+           <br />
           <button type="submit">Log In</button>
         </form>{" "}
         <br />

@@ -36,19 +36,21 @@ const Register = () => {
 
       <div class="body">
         <form onSubmit={checkUser}>
-          <input type="text" /> <br />
           <br />
           <label for="username">Username:</label>
           <br />
+          <br />
           <input
-            type="text"
+            type="username"
             id="username"
             name="username"
             onChange={(event) => setUsername(event.target.value)}
           />
           <br />
           <br />
+          <br />
           <label for="pwd">Password:</label>
+          <br />
           <br />
           <input
             type="password"
@@ -56,7 +58,10 @@ const Register = () => {
             name="pwd"
             onChange={(event) => setPassword(event.target.value)}
           />
-          <button type="submit">Create Account</button>
+           <br />
+           <br />
+           <br />
+          <button type="submit">Register</button>
         </form>
         <br />
 
