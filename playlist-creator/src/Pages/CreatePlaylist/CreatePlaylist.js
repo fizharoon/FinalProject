@@ -3,25 +3,32 @@ import "./styles.css";
 import RecSongs from "../../Components/Song";
 import Navbar from "../../Components/Navbar";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const CreatePlaylist = () => {
   const [name, setName] = useState("");
+  const navigate = useNavigate();
+
   useEffect(() => {}, []);
 
   const createPlaylist = (e) => {
     e.preventDefault();
 
-    // axios
-    //   .post(`http://127.0.0.1:5000/login`, {
-    //     name: name,
-    //   })
+    axios
+      .post(
+        `https://cse-106-final-zuwe-master-vpc737kgfa-wm.a.run.app/UserHome/CreatePlaylist`,
+        {
+          playlistName: name,
+        }
+      )
 
-    //   .then((res) => {
-    //     console.log("YEET");
-    //     console.log(res);
-    //     if (res.data[0] == 200) {
-    //       setName("");
-    //     }
-    //   });
+      .then((res) => {
+        console.log("YEET");
+        console.log(res);
+        if (res.data[0] == 200) {
+          setName("");
+        }
+        navigate("/Dashboard");
+      });
     console.log(name);
   };
   return (

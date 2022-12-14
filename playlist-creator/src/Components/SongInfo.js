@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./styles.css";
 import Modal from "react-modal";
+import { useNavigate } from "react-router-dom";
 const customStyles = {
   content: {
     top: "50%",
@@ -14,6 +15,7 @@ const customStyles = {
 };
 // import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
 const SongInfo = (props) => {
+  const navigate = useNavigate();
   const [song, setSong] = useState({});
   useEffect(() => {
     axios
@@ -33,25 +35,52 @@ const SongInfo = (props) => {
   }
   const addSong = (playlist_ID) => {
     axios
-      .post(`http://127.0.0.1:5000/UserHome/ModifyPlaylist/AddSong`, {
-        playlist_ID: playlist_ID,
-        song_ID: props.ID,
-      })
+      .post(
+        `https://cse-106-final-zuwe-master-vpc737kgfa-wm.a.run.app/UserHome/ModifyPlaylist/AddSong`,
+        {
+          playlist_ID: playlist_ID,
+          song_ID: props.ID,
+        }
+      )
       .then((res) => {
         console.log("YEET");
         console.log(res);
       });
+
     closeModal();
+  };
+  const deleteSong = () => {
+    console.log(props.playlist);
+    axios
+      .post(
+        `https://cse-106-final-zuwe-master-vpc737kgfa-wm.a.run.app/UserHome/ModifyPlaylist/DeleteSong`,
+        {
+          playlist_ID: props.playlist,
+          song_ID: props.ID,
+        }
+      )
+      .then((res) => {
+        console.log("YEET");
+        console.log(res);
+      });
+    navigate("/Dashboard");
   };
   return (
     <tr>
-      <td>{song.name}</td>
-      <td>{song.artist}</td>
-      <td>{song.album}</td>
+      <td style={{ fontWeight: "bold" }}>{song.name}</td>
+      <td style={{ fontWeight: "bold" }}>{song.artist}</td>
+      <td style={{ fontWeight: "bold" }}>{song.album}</td>
       {props.modify ? (
         <td>
           <button class="add" onClick={() => openModal()}>
             <i class="fa fa-fw fa-plus"></i>
+          </button>
+        </td>
+      ) : null}
+      {props.delSong ? (
+        <td>
+          <button class="add" onClick={() => deleteSong()}>
+            <i class="fa fa-fw fa-minus"></i>
           </button>
         </td>
       ) : null}
@@ -76,28 +105,5 @@ const SongInfo = (props) => {
     </tr>
   );
 };
-
-// export default RecSongs;
-// import "./styles.css";
-
-// const Song = () => {
-//   const [user, setUser] = useState(0);
-//   useEffect(() => { }, []);
-
-//   return (
-//     <main className="dashboard">
-//       <h1>Songs</h1>
-//       <body>
-//         <h2>Select songs</h2>
-//         <input type="checkbox" id="song" name="song1" value="song1" />
-//         <label for="song">song </label><br />
-//         <div id="root"></div>
-//         <button id="btn">Add </button>
-//         <button id="btn">Play </button>
-//       </body>
-//     </main>
-//   );
-
-// };
 
 export default SongInfo;

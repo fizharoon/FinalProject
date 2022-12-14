@@ -51,9 +51,6 @@ def Initialize_Songs(df):
 
     # Populate the Songs Table
 
-    pb = ProgressBar(total=df.shape[0], suffix='Completed',
-                     decimals=3, length=50, fill='X', zfill='-')
-
     for i in range(df.shape[0]):
 
         try:
@@ -71,8 +68,6 @@ def Initialize_Songs(df):
         except:
             pass
 
-        pb.print_progress_bar(i)
-
     return Songs
 
 
@@ -85,6 +80,10 @@ def Initialize_Users():
                      db.Column('User_Name', db.String(255), nullable=False),
                      db.Column('password', db.String(255), nullable=False),
                      db.Column('ML_Model_filename',
+                               db.String(255), nullable=True),
+                     db.Column('Genres', db.String(255), nullable=True),
+                     db.Column('Artists', db.String(255), nullable=True),
+                     db.Column('Liked_Playlists',
                                db.String(255), nullable=True)
                      )
 

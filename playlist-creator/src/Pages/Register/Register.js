@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 const Register = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -12,20 +13,28 @@ const Register = () => {
   const checkUser = (event) => {
     console.log("YEET");
     event.preventDefault();
-    axios
-      .post(`http://127.0.0.1:5000/register`, {
-        username: username,
-        password: password,
-      })
+    console.log(location.state.genres);
+    console.log(location.state.artists);
 
+    axios
+      .post(
+        `https://cse-106-final-zuwe-master-vpc737kgfa-wm.a.run.app/register`,
+        {
+          username: username,
+          password: password,
+          genres: location.state.genres,
+          artists: location.state.artists,
+        }
+      )
       .then((res) => {
         console.log("YEET");
         console.log(res);
         if (res.status == 200) {
-          navigate("/");
+          navigate("/Songs");
         }
       });
   };
+
   return (
     <body>
       <div class="header">
@@ -39,6 +48,7 @@ const Register = () => {
           <label for="username">Username:</label>
           <br />
           <input
+            class="logininput"
             id="username"
             name="username"
             onChange={(event) => setUsername(event.target.value)}
@@ -48,6 +58,7 @@ const Register = () => {
           <label for="pwd">Password:</label>
           <br />
           <input
+            class="logininput"
             type="password"
             id="pwd"
             name="pwd"

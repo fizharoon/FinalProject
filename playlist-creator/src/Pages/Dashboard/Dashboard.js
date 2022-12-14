@@ -5,15 +5,17 @@ import Navbar from "../../Components/Navbar";
 import { useNavigate } from "react-router-dom";
 import RecSongs from "../../Components/Song";
 
-// import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+// import "https://cdn6 8js.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 const Dashboard = () => {
   const [playlists, setPlaylists] = useState([]);
   useEffect(() => {
-    axios.get(`http://127.0.0.1:5000/UserHome`).then((res) => {
-      console.log("YEET");
-      console.log(res.data);
-      setPlaylists(res.data);
-    });
+    axios
+      .get(`https://cse-106-final-zuwe-master-vpc737kgfa-wm.a.run.app/UserHome`)
+      .then((res) => {
+        console.log("YEET");
+        console.log(res.data);
+        setPlaylists(res.data);
+      });
   }, []);
   const navigate = useNavigate();
 
@@ -31,10 +33,11 @@ const Dashboard = () => {
                   class="playlist"
                   onClick={() =>
                     navigate("/ViewPlaylist", {
-                      state: { name: obj.name, ID: obj.ID },
+                      state: { name: obj.name, ID: obj.ID, check: true },
                     })
                   }
                 >
+                  <img src="https://picsum.photos/id/39/200/300"></img>
                   {obj.name}
                 </button>
               </div>

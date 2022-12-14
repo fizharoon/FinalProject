@@ -4,47 +4,17 @@ import "./styles.css";
 import SongInfo from "./SongInfo";
 // import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css";
 const RecSongs = (props) => {
-  const [user, setUser] = useState(0);
+  const [data, setData] = useState([]);
 
-  let data = [
-    {
-      song: "Song One",
-      ID: "10",
-      artist: "Artist",
-      album: "new Ablum",
-    },
-    {
-      song: "Song Two",
-      ID: "11",
-      artist: "Artist",
-      album: "new Ablum",
-    },
-    {
-      song: "Song Three",
-      ID: "12",
-      artist: "Artist",
-      album: "new Ablum",
-    },
-    {
-      song: "Song Four",
-      ID: "13",
-      artist: "Artist",
-      album: "new Ablum",
-    },
-    {
-      song: "Song Five",
-      ID: "14",
-      artist: "Artist",
-      album: "new Ablum",
-    },
-  ];
   useEffect(() => {
-    // axios
-    //   .get(`http://127.0.0.1:5000/UserHome/GetRecommendations`)
-    //   .then((res) => {
-    //     console.log("YEET");
-    //     console.log(res);
-    //   });
+    axios
+      .get(
+        `https://cse-106-final-zuwe-master-vpc737kgfa-wm.a.run.app/UserHome/GetRecommendations`
+      )
+      .then((res) => {
+        console.log(res.data);
+        setData(Object.values(res.data));
+      });
   }, []);
 
   return (
@@ -65,9 +35,10 @@ const RecSongs = (props) => {
             {data.map((obj) => {
               return (
                 <SongInfo
-                  ID={obj.ID}
+                  ID={obj}
                   playlists={props.playlists}
                   modify={true}
+                  delSong={false}
                 />
               );
             })}

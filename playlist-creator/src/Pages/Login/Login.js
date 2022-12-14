@@ -16,7 +16,7 @@ const Login = () => {
     console.log(username);
     console.log(password);
     axios
-      .post(`http://127.0.0.1:5000/login`, {
+      .post(`https://cse-106-final-zuwe-master-vpc737kgfa-wm.a.run.app/login`, {
         username: username,
         password: password,
       })
@@ -38,7 +38,7 @@ const Login = () => {
     <body>
       <div class="header">
         <div>
-          <h1>SPooT IffY</h1>
+          <h1>Spootify</h1>
         </div>
       </div>
 
@@ -47,6 +47,7 @@ const Login = () => {
           <label for="username">Username:</label>
           <br />
           <input
+            class="logininput"
             value={username}
             id="pwd"
             name="username"
@@ -55,6 +56,7 @@ const Login = () => {
           <br />
           <label for="pwd">Password:</label>
           <input
+            class="logininput"
             value={password}
             type="password"
             id="pwd"
@@ -65,7 +67,7 @@ const Login = () => {
             Log In
           </button>
         </form>
-        <button class="newButton" onClick={() => navigate("/Register")}>
+        <button class="newButton" onClick={() => navigate("/Genres")}>
           Register
         </button>
         <br />
